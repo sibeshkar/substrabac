@@ -3,7 +3,6 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from substrapp.models import Problem
 from substrapp.serializers import ProblemSerializer
-from substrapp.utils import compute_hash
 
 
 class ProblemList(APIView):
@@ -57,10 +56,10 @@ class ProblemList(APIView):
             # print(serializer.data)
             # problem = Problem(description=serializer.data["description"],
             #                   metrics=serializer.data["metrics"])
-            problem = Problem(description=request.FILES["description"],
-                              metrics=request.FILES["metrics"])
-            problem.save()
-            # serializer.save()
+            # problem = Problem(description=request.FILES["description"],
+            #                   metrics=request.FILES["metrics"])
+            # problem.save()
+            serializer.save()
             # print('test', serializer.data)
             # run smart contract to register problem in ledger
             # TODO using problem.pk as description hash
